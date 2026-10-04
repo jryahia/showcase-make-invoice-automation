@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Make Invoice Automation | Case Study</title>
-<meta name="description" content="Receives invoice emails through a Make.com webhook, extracts structured data and exports it to accounting.">
+<meta name="description" content="Receives invoice emails through a webhook, extracts structured data with AI (regex fallback) and exports it for accounting. The Google Sheets export is mocked in this version.">
 <style>
 :root{--bg:#0d1117;--card:#161b22;--line:#30363d;--fg:#e6edf3;--mut:#8b949e;--acc:#e11d48}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 "Segoe UI",Helvetica,Arial,sans-serif}
@@ -23,15 +23,15 @@ footer{margin-top:64px;color:var(--mut);font-size:14px;border-top:1px solid var(
 </style></head><body><main>
 <div class="kicker">Case study &middot; Private project</div>
 <h1>Make Invoice Automation</h1>
-<p class="lead">Receives invoice emails through a Make.com webhook, extracts structured data and exports it to accounting.</p>
+<p class="lead">Receives invoice emails through a webhook, extracts structured data with AI (regex fallback) and exports it for accounting. The Google Sheets export is mocked in this version.</p>
 <div class="note"><strong>This is a proprietary project. Source code is private. This page showcases the system&#x27;s architecture and results.</strong></div>
 <img class="hero" src="assets/00-dashboard.png" alt="Parsed invoice and totals">
-<h2>Problem it solves</h2><p>Retyping supplier invoices into a spreadsheet or accounting tool is error-prone busywork. This service parses incoming invoices into structured records and pushes them onward automatically.</p>
+<h2>Problem it solves</h2><p>Retyping supplier invoices into a spreadsheet or accounting tool is error-prone busywork. This service parses incoming invoices into structured records and pushes them onward automatically. It is built as the webhook backend for a Make.com scenario: the automation platform handles triggers, and this service holds the logic and data.</p>
 <h2>Architecture</h2><img class="arch" src="assets/architecture.svg" alt="Architecture diagram"><ol><li>Make.com forwards an invoice email to the webhook.</li><li>Invoice fields are extracted with AI, with a rule-based fallback.</li><li>The structured invoice is stored.</li><li>It is exported to the accounting destination, and the export is logged.</li></ol>
 <h2>Key features</h2><ul class="grid"><li>Webhook receiver for Make.com</li><li>AI extraction with a deterministic fallback</li><li>Vendor, totals and dates captured</li><li>Export log</li><li>Built-in test parser</li></ul>
-<h2>Tech stack</h2><ul class="chips"><li>Python</li><li>FastAPI</li><li>Make.com</li><li>OpenAI</li><li>SQLAlchemy</li><li>Jinja2</li></ul>
-<h2>What it does in practice</h2><ul><li>Removes manual data entry for incoming invoices.</li></ul>
-<h2>Screenshots</h2><figure><img src="assets/00-dashboard.png" alt="Parsed invoice and totals" loading="lazy"><figcaption>Parsed invoice and totals</figcaption></figure>
+<h2>Tech stack</h2><ul class="chips"><li>Python</li><li>FastAPI</li><li>Webhooks</li><li>OpenAI</li><li>SQLAlchemy</li><li>Jinja2</li></ul>
+<h2>What it does in practice</h2><ul><li>Extraction runs on real invoice text; the accounting export currently writes to a local file standing in for Google Sheets.</li></ul>
+<h2>Screenshots</h2><figure><img src="assets/00-dashboard.png" alt="Parsed invoice and totals" loading="lazy"><figcaption>Parsed invoice and totals</figcaption></figure><figure><img src="assets/10-api.png" alt="API surface: invoice webhook, parsing, export" loading="lazy"><figcaption>API surface: invoice webhook, parsing, export</figcaption></figure>
 <footer>Built by <a href="https://github.com/jryahia">Yahya Jarray</a> &middot;
 <a href="mailto:yahiajarray43@gmail.com">yahiajarray43@gmail.com</a> &middot;
 <a href="https://github.com/jryahia/showcase-make-invoice-automation">Repository</a></footer>

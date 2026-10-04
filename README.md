@@ -1,6 +1,6 @@
 # Make Invoice Automation
 
-**Receives invoice emails through a Make.com webhook, extracts structured data and exports it to accounting.**
+**Receives invoice emails through a webhook, extracts structured data with AI (regex fallback) and exports it for accounting. The Google Sheets export is mocked in this version.**
 
 > **This is a proprietary project. Source code is private. This page showcases the system's architecture and results.**
 
@@ -10,7 +10,7 @@
 
 ## Problem it solves
 
-Retyping supplier invoices into a spreadsheet or accounting tool is error-prone busywork. This service parses incoming invoices into structured records and pushes them onward automatically.
+Retyping supplier invoices into a spreadsheet or accounting tool is error-prone busywork. This service parses incoming invoices into structured records and pushes them onward automatically. It is built as the webhook backend for a Make.com scenario: the automation platform handles triggers, and this service holds the logic and data.
 
 ## Architecture
 
@@ -31,17 +31,21 @@ Retyping supplier invoices into a spreadsheet or accounting tool is error-prone 
 
 ## Tech stack
 
-![Python](https://img.shields.io/badge/Python-161b22?style=for-the-badge&labelColor=161b22&color=161b22) ![FastAPI](https://img.shields.io/badge/FastAPI-161b22?style=for-the-badge&labelColor=161b22&color=161b22) ![Make.com](https://img.shields.io/badge/Make.com-161b22?style=for-the-badge&labelColor=161b22&color=161b22) ![OpenAI](https://img.shields.io/badge/OpenAI-161b22?style=for-the-badge&labelColor=161b22&color=161b22) ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-161b22?style=for-the-badge&labelColor=161b22&color=161b22) ![Jinja2](https://img.shields.io/badge/Jinja2-161b22?style=for-the-badge&labelColor=161b22&color=161b22)
+![Python](https://img.shields.io/badge/Python-161b22?style=for-the-badge&labelColor=161b22&color=161b22) ![FastAPI](https://img.shields.io/badge/FastAPI-161b22?style=for-the-badge&labelColor=161b22&color=161b22) ![Webhooks](https://img.shields.io/badge/Webhooks-161b22?style=for-the-badge&labelColor=161b22&color=161b22) ![OpenAI](https://img.shields.io/badge/OpenAI-161b22?style=for-the-badge&labelColor=161b22&color=161b22) ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-161b22?style=for-the-badge&labelColor=161b22&color=161b22) ![Jinja2](https://img.shields.io/badge/Jinja2-161b22?style=for-the-badge&labelColor=161b22&color=161b22)
 
 ## What it does in practice
 
-- Removes manual data entry for incoming invoices.
+- Extraction runs on real invoice text; the accounting export currently writes to a local file standing in for Google Sheets.
 
 ## Screenshots
 
 **Parsed invoice and totals**
 
 ![Parsed invoice and totals](assets/00-dashboard.png)
+
+**API surface: invoice webhook, parsing, export**
+
+![API surface: invoice webhook, parsing, export](assets/10-api.png)
 
 ---
 
