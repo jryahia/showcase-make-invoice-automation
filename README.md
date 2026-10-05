@@ -39,6 +39,8 @@ Retyping supplier invoices into a spreadsheet or accounting tool is error-prone 
 
 ## Screenshots
 
+> Screenshots show the app running on seeded demo data, not client data.
+
 **Parsed invoice and totals**
 
 ![Parsed invoice and totals](assets/00-dashboard.png)
